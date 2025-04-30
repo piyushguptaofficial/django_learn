@@ -8,4 +8,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+class ItemListView(ListView):
+    model = ItemListView
+    template_name = 'item_list.html'
+    context_object_name = 'items'
 
