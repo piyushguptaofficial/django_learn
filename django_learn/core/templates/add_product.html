@@ -1,0 +1,25 @@
+<html>
+<body>
+    <h1>Add a New Product</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        {% if form.errors %}
+            <div class="errors">
+                <p>Please correct the following errors:</p>
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        <button type="submit">Add Product</button>
+    </form>
+</body>
+</html>
