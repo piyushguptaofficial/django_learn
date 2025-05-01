@@ -39,3 +39,18 @@ Used Django’s built-in UserCreationForm, LoginView, LogoutView.
 Implemented ListView and DetailView.
 
 Added full CRUD functionality using CreateView, UpdateView, DeleteView.
+
+Phase 3: Advanced Topics
+Class-based views (CBVs) vs function-based views (FBVs)
+
+Middleware
+
+File uploads (images, docs)
+
+Email sending
+
+Signals
+
+Pagination
+
+Permissions and decorators
