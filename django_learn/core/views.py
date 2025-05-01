@@ -9,8 +9,14 @@ from .models import Item
 # from django.views.generic.edit import CreateView
 # from django.views.generic.edit import UpdateView
 # from django.views.generic.edit import DeleteView
+
 from django.core.mail import send_mail
 from django.conf import settings
+
+#### import paginator #######
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from .models import Product
 
 
 def register(request):
@@ -90,3 +96,13 @@ class ItemDetailView(DetailView):
 #     model = Item
 #     template_name = 'item_confirm_delete.html'
 #     success_url = reverse_lazy('item-list')
+
+## Paginate OuerySet
+# def product_list(request):
+#     product_list = Product.objects.all()
+#     paginator = Paginator(product_list, 5) #Show 5 products per page
+
+#     page_number = request.GET.get('page') #get ?page=2 from the URL
+#     page_obj = paginator.get_page(page_number)
+
+#     return render(request, 'product_list.html', {'page_obj':page_obj})

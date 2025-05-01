@@ -8,6 +8,18 @@
 
 from django.db import models
 
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from .models import Profile
+
+from django.db import models
+from django.contrib.auth.models import User
+
+from django.app import AppConfig
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -45,3 +57,29 @@ class ItemListView(ListView):
 
 # Delete
 # item.delete()
+
+###### Django Signals:- enable you to attach behavior that should 
+# ####            happen when something specific happens in your application.
+
+### post_save ###
+
+# This function will be called after a User is saved
+# @receiver(post_save, sender=User)
+# def create_profile(sender, instance, created, **kwargs0):
+#     if created:
+#         Profilee.objects.create(user=instance)
+
+# Create a Profile Model
+
+# class Profile(models.Model):
+#     user = models.OneToOneFiels(user, on_delete=models.CASCADE)
+#     bio = models.TextField()
+
+# Register the Signal
+
+# class CoreConfig(AppConfig):
+#     name='core'
+
+#     def ready(self):
+#         import core.signals
+##### RUN MIGRATIONS #########
