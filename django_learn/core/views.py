@@ -6,6 +6,11 @@ from django.contrib import messages
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from .models import Item
+# from django.views.generic.edit import CreateView
+# from django.views.generic.edit import UpdateView
+# from django.views.generic.edit import DeleteView
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def register(request):
@@ -34,6 +39,19 @@ def add_product(request):
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})
 
+### Basic Email sending Example ###
+def send_test_email(request):
+    send_mail(
+        'Test Subject',
+        'Here is the message body.',
+        settings.EMAIL_HOST_USER,
+        ['recipient@example.com'],
+        fail_silently=False,
+    )
+    return render(request, 'email_sent.html')
+
+##### Class-Based Views (CBVs)
+# replaced FBVs with CBVs to handle CRUD operations cleanly.
 
 # Use ListView to Show a Single Item
 class ItemListView(ListView):
@@ -47,3 +65,28 @@ class ItemDetailView(DetailView):
     model = Item
     template_name = 'item_detail.html'
     context_object_name = 'item'
+
+
+############# CREATE ITEMS  ##################
+
+# class ItemCreateView(CreateView):
+#     model = Item
+#     fields = ['name', 'description', 'price'
+#     template_name = 'item_from.html'
+#     success_url = reverse_lazy('item-list')
+
+
+############### UPDATE ITEM #######################
+
+# class ItemUpdateView(UpdateView):
+#     model = Item
+#     fields = ['name', 'description', 'price'
+#     template_name = 'item_from.html'
+#     success_url = reverse_lazy('item-list')
+
+
+###################33 DELETE ITEM ###################
+# class ItemDeleteView(DeleteView):
+#     model = Item
+#     template_name = 'item_confirm_delete.html'
+#     success_url = reverse_lazy('item-list')

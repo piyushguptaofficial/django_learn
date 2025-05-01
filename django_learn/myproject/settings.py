@@ -50,6 +50,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# this logs every incoming request and outgoing response.
+MIDDLEWARE += [
+    'yourapp.middleware.SimpleLoggingMiddleware',
+]
+
+
 ROOT_URLCONF = "myproject.urls"
 
 TEMPLATES = [
@@ -84,6 +90,13 @@ DATABASES = {
 LOGIN_URL = 'login'                  # URL to redirect if @login_required
 LOGIN_REDIRECT_URL = 'home'          # Where to go after login
 LOGOUT_REDIRECT_URL = 'login'        # After logout
+
+###### Protect Pages ###########
+# Use LoginRequiredMixin to restrict access to logged-in users only for views 
+# like Create, Update, Delete.
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'
+
 
 
 
@@ -127,3 +140,16 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+######## Send Emails ###########
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your_email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_app_password'  
+
+
+
